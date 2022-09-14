@@ -3,7 +3,7 @@ JENKINS_URL="http://localhost:8080"
 
 JENKINS_CRUMB=$(curl -s --cookie-jar /tmp/cookies -u b4ssey_admin:phuSR $JENKINS_URL/crumbIssuer/api/json  | jq .crumb -r) 
 
-JENKINS_TOKEN=$(curl -s -X POST -H "Jenkins-Crumb:"${JENKINS_CRUMB}"" --cookie /tmp/cookies  $JENKINS_URL/me/descriptorByName/jenkins.security.ApiTokenProperty/generateNewToken?newTokenName=\demo-token66 -u admin:admin | jq .data.tokenValue -r) 
+JENKINS_TOKEN=$(curl -s -X POST -H "Jenkins-Crumb:"${JENKINS_CRUMB}"" --cookie /tmp/cookies  $JENKINS_URL/me/descriptorByName/jenkins.security.ApiTokenProperty/generateNewToken?newTokenName=\demo-token66 -u b4ssey_admin:phuSR | jq .data.tokenValue -r) 
 
 echo $JENKINS_URL
 echo $JENKINS_CRUMB
