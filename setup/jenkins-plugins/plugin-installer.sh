@@ -11,7 +11,7 @@ echo $JENKINS_TOKEN
 
 while read plugin; do
    echo "........Installing ${plugin} .."
-   curl -s POST --data "<jenkins><install plugin='${plugin}' /></jenkins>" -H 'Content-Type: text/xml' $JENKINS_URL/pluginManager/installNecessaryPlugins --user admin:$JENKINS_TOKEN
+   curl -s POST --data "<jenkins><install plugin='${plugin}' /></jenkins>" -H 'Content-Type: text/xml' $JENKINS_URL/pluginManager/installNecessaryPlugins --user b4ssey_admin:$JENKINS_TOKEN
 done < plugins.txt
 
 
