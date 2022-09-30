@@ -25,6 +25,8 @@ spec:
           volumeMounts:
             - mountPath: /tmp
               name: vlme
+            - mountPath: /tmp
+              name: vlme
           securityContext:
             runAsNonRoot: true
             runAsUser: 100
