@@ -16,7 +16,7 @@ spec:
         app: devsecops
     spec:
       volumes:
-        - name: vlm
+        - name: vlme
           emptyDir: {}
       serviceAccountName: default
       containers:
@@ -24,7 +24,7 @@ spec:
           name: devsecops-container
           volumeMounts:
             - mountPath: /tmp
-              name: vol
+              name: vlme
           securityContext:
             runAsNonRoot: true
             runAsUser: 100
