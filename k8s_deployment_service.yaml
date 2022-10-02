@@ -15,22 +15,20 @@ spec:
       labels:
         app: devsecops
     spec:
-      volumes:
-        - name: vlme
-          emptyDir: {}
       serviceAccountName: default
       containers:
         - image: replace
           name: devsecops-container
           volumeMounts:
-            - mountPath: /tmp
-              name: vlme
-            - mountPath: /tmp
-              name: vlme
+            - name: tmp-vol
+              mountPath: /tmp
           securityContext:
             runAsNonRoot: true
             runAsUser: 100
             readOnlyRootFilesystem: true
+      volumes:
+        - name: tmp-vol
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
