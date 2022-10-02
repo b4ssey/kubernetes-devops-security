@@ -19,16 +19,16 @@ spec:
       containers:
         - image: replace
           name: devsecops-container
-          volumeMounts:
-            - name: tmp-vol
-              mountPath: /tmp
+          # volumeMounts:
+          #   - name: tmp-vol
+          #     mountPath: /tmp
           securityContext:
             runAsNonRoot: true
             runAsUser: 100
             readOnlyRootFilesystem: true
-      volumes:
-        - name: tmp-vol
-          emptyDir: {}
+      # volumes:
+      #   - name: tmp-vol
+      #     emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
