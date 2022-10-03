@@ -6,7 +6,7 @@ pipeline {
     containerName = "devsecops-container"
     serviceName = "devsecops-svc"
     imageName = "b4ssey/numeric-app:${GIT_COMMIT}"
-    applicationURL = "http://devsecops-demo-ekemini.eastus.cloudapp.azure.com/"
+    applicationURL = "http://devsecops-demo-ekemini.eastus.cloudapp.azure.com"
     applicationURI = "/increment/99"
   }
 
@@ -84,10 +84,11 @@ pipeline {
           },
           "Kubesec Scan": {
             sh "bash kubesec-scan.sh"
-          },
-          "Trivy Scan": {
-            sh "bash trivy-k8s-scan.sh"
           }
+          // ,
+          // "Trivy Scan": {
+          //   sh "bash trivy-k8s-scan.sh"
+          // }
         )
       }
     }
@@ -115,6 +116,23 @@ pipeline {
             }
           }
         )
+      }
+    }
+
+    stage('Integration Tests - DEV') {
+      steps {
+        script {
+          try {
+            withKubeConfig([credentialsId: 'kubeConfig']) {
+              sh "bash integration-test.sh"
+            }
+          } catch (e) {
+            withKubeConfig([credentialsId: 'kubeConfig']) {
+              sh "kubectl -n default rollout undo deploy ${deploymentName}"
+            }
+            throw e
+          }
+        }
       }
     }
      
