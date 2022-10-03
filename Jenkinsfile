@@ -153,6 +153,8 @@ pipeline {
         // pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
         publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'owasp-zap-report', reportFiles: 'zap_report.html', reportName: 'HTML ReportOWASP ZAP HTML report', reportTitles: 'OWASP ZAP HTML report', useWrapperFileDirectly: true])
+      }
+
       // success {
 
       // } failure {
