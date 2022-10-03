@@ -152,7 +152,7 @@ pipeline {
         jacoco execPattern: 'target/jacoco.exec'
         // pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
-        publishHTML(target : [allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'owasp-zap-report', reportFiles: 'zap_report.html', reportName: 'HTML ReportOWASP ZAP HTML report', reportTitles: 'OWASP ZAP HTML report', useWrapperFileDirectly: true])
+        publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'owasp-zap-report', reportFiles: 'zap_report.html', reportName: 'HTML ReportOWASP ZAP HTML report', reportTitles: 'OWASP ZAP HTML report', useWrapperFileDirectly: true])
       }
 
       // success {
