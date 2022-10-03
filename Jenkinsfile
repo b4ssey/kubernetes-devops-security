@@ -138,7 +138,7 @@ pipeline {
 
      stage('OWASP ZAP - DAST') {
       steps {
-        withKubeConfig([credentialsId: 'kubecConfig']) {
+        withKubeConfig([credentialsId: 'kubeConfig']) {
           sh 'bash zap.sh'
         }
       }
